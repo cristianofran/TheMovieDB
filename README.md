@@ -11,3 +11,6 @@
 - Busca por título
 - Paginação por Scroll
 - Descrição do filme com Imagem
+
+## Imagem
+![Exemplo](https://raw.githubusercontent.com/cristianofran/TheMovieDB/master/index.gif)
