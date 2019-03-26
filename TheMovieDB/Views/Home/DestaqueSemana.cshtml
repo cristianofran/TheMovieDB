@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Destaques da Semana";
+}
+<div class="jumbotron">
+    <div class="container text-left">
+        <h1>Ferrous Entertainment</h1>
+        <p> Na Ferrous Entertainment, você encontra filmes incríveis. Todos para o seu melhor divertimento. </p>
+    </div>
+</div>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="@Url.Action("DestaqueSemana")">Destaque da semana</a></li>
+    <li role="presentation"><a href="@Url.Action("DestaqueMes")" class="">Destaque do mês</a></li>
+</ul>
+
+<h3 class="text-left">@ViewBag.Title</h3><br>
+
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div id="semana" class="col-sm-10"></div>
+    <div class="col-sm-1"></div>
+</div>
+
+<script>
+    $(function() {
+        destaqueSemana();
+    });
+</script>

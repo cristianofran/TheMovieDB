@@ -1,0 +1,11 @@
+﻿body, footer{ background-color:#181818 !important }
+h1, h3, h4, p, li{ color: #fff !important}
+.navbar-brand { color:#00d573 !important }
+.navbar { margin-bottom: 0; border-radius: 0; }    
+footer { background-color: #f2f2f2; padding: 25px; }
+.jumbotron { background-color:transparent !important; }
+.media{ color: #000; }
+
+ul.nav li a, ul.nav li a:visited { color: #fff !important; }
+ul.nav li a:hover { color: #555 !important; }
+ul.nav-tabs li.active a { color: #555 !important; }

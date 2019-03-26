@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Ferrous Entertainment</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/JScript.js"></script>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Ferrous Entertainment</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="@Url.Action("About", "Home")">Sobre</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @using (Html.BeginForm("Pesquisar", "Home", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                @Html.TextBox("titulo", null, new{ @class="form-control", @placeholder="Título do filme" })
+                            </div>
+                            <button type="submit" class="btn btn-default">Pesquisar</button>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid bg-3">
+        <br><br>
+        @RenderBody()
+    </div>
+
+    <br><br><br>
+    <footer class="container-fluid text-left">
+        <p>© 2019 - Todos os direitos reservados.</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

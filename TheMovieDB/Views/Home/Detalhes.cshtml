@@ -1,0 +1,70 @@
+﻿@model System.Net.TMDb.Movie
+@{
+    ViewBag.Title = "Detalhes do Filme";
+}
+
+<div class="container text-center">
+    <br><br>
+    <div class="row">
+        <div class="col-sm-4">      
+            <img src="https://image.tmdb.org/t/p/w500/@Model.Poster" class="img-responsive" alt="Image">
+        </div>
+        <div class="col-sm-8 text-left">
+            <h3>@Model.Title</h3><br>
+
+            <h4>Sinopse</h4>
+            <p>@Model.Overview</p>
+            
+            @if (Model.Credits.Crew.Any(x => x.Job.Contains("Director")))
+            {
+                <h4>Diretor</h4>
+                <ul>
+                    @foreach (var crew in Model.Credits.Crew)
+                    {
+                        if (@crew.Job.Contains("Director"))
+                        {
+                            <li>@crew.Name - @crew.Job</li>
+                        }
+                    }
+                </ul>
+            }
+            
+            @if (Model.ReleaseDate.HasValue)
+            {
+                <h4>Data de lançamento</h4>
+                <p>@Model.ReleaseDate.Value.ToShortDateString()</p>
+            }
+
+            <h4>Elenco</h4>
+            <ul class="elenco">
+                @foreach (var crew in Model.Credits.Cast)
+                {
+                    <li>@crew.Name - @crew.Character</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .elenco li { display:none; }
+</style>
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('ul.elenco').each(function () {
+            if (jQuery(this).children('li').length > 5) {
+                jQuery(this).children('li:lt(5)').show();
+                jQuery(this).append('<button class="btn btn-link loadMore">Mais..</button>');
+            }
+        });
+        jQuery('ul.elenco').on("click", '.loadMore', function () {
+            jQuery(this).parent('.elenco').children('li:gt(4)').show();
+            jQuery(this).removeClass('loadMore').addClass('loadLess').text('Menos..');
+        });
+        jQuery('ul.elenco').on("click", '.loadLess', function () {
+            jQuery(this).parent('.elenco').children('li:gt(4)').hide();
+            jQuery(this).removeClass('loadLess').addClass('loadMore').text('Mais..');
+        });
+    });
+</script>
